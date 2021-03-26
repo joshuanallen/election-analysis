@@ -50,40 +50,50 @@ with open(file_to_load) as election_data:
          # Add vote to respective candidate's count
         candidate_votes[candidate_name] += 1
 
-# Print total votes (reflects total number of data points)
-# print(total_votes)
-
-# Print list of candidates
-# print(candidate_options)
-
-# Print candidate_votes dictionary which holds each candidate name and respective vote count {key = candidate's name : value = vote count}
-# print(candidate_votes)
-
-# iterate through candidate_options list to retrieve candidate's names
-for candidate_name in candidate_votes:
+# Save results in text file
+with open(file_to_save, "w") as txt_file:
     
-    # retrieve vote count for each candidate
-    votes = candidate_votes[candidate_name]
+    # Print the final vote count to the terminal.
+    election_results = (
+        f"\nElection Results\n"
+        f"-------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"-------------------------\n")
+    print(election_results, end="")
+    # Save the final vote count to the text file.
+    txt_file.write(election_results)
 
-    # calculate percentage of votes
-    vote_percentage = float(votes) / float(total_votes) * 100
 
-    # iterate through candidate_votes to find votes > 0
-    if (votes > winning_count):
-    # if true then votes = winning_count & vote_percentage = winning_percentage
-        winning_count = votes
-        winning_percentage = vote_percentage
-    # select winning candidate from candidate_options list
-        winning_candidate = candidate_name
+    # iterate through candidate_options list to retrieve candidate's names
+    for candidate_name in candidate_votes:
+        
+        # retrieve vote count for each candidate
+        votes = candidate_votes[candidate_name]
 
-    # Output candidates' names and percentage of votes (* SkillDrill:  percentage limited to 1 floating decimal)
-    print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+        # calculate percentage of votes
+        vote_percentage = float(votes) / float(total_votes) * 100
 
-# Create winning candidate output
-winning_candidate_summary = (
-    f"-------------------------\n"
-    f"Winner: {winning_candidate}\n"
-    f"Winning Vote Count: {winning_count:,}\n"
-    f"Winning Percentage: {winning_percentage:.1f}%\n"
-    f"-------------------------\n")
-print(winning_candidate_summary)
+        # iterate through candidate_votes to find votes > 0
+        if (votes > winning_count):
+        # if true then votes = winning_count & vote_percentage = winning_percentage
+            winning_count = votes
+            winning_percentage = vote_percentage
+        # select winning candidate from candidate_options list
+            winning_candidate = candidate_name
+        # Output candidates' names and percentage of votes (* SkillDrill:  percentage limited to 1 floating decimal)
+        candidate_results = (f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+
+        # Print each candidate, their voter count, and percentage to the terminal.
+        print(candidate_results)
+        #  Save the candidate results to our text file.
+        txt_file.write(candidate_results)
+    
+    # Create winning candidate output
+    winning_candidate_summary = (
+        f"-------------------------\n"
+        f"Winner: {winning_candidate}\n"
+        f"Winning Vote Count: {winning_count:,}\n"
+        f"Winning Percentage: {winning_percentage:.1f}%\n"
+        f"-------------------------\n")
+    # Save the winning candidate's name to the text file.
+    txt_file.write(winning_candidate_summary)
