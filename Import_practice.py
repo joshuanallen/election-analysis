@@ -41,3 +41,17 @@
 # dir(numpy)
 # import os
 # dir(os)
+# dir(os.path)
+# Call in an os.path.join()
+
+# --------------
+# joining practice
+# Join allows for application of multiple modules on an object using the join() function
+# file_to_load = os.path.join("Resources", "election_results.csv")
+
+
+# opening and writing (3.4.3)
+# Create a filename variable to a direct or indirect path to the file.
+# file_to_save = os.path.join("analysis", "election_analysis.txt")
+# # Using the open() function with the "w" mode we will write data to the file.
+# open(file_to_save, "w")
