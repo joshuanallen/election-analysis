@@ -112,7 +112,6 @@ with open(file_to_save, "w") as txt_file:
     county_largest_turnout_summary = (
         f"-------------------------\n"
         f"County with Largest Turnout: {county_largest_turnout}\n"
-        # f"County with Largest Turnout Vote Count: {county_largest_turnout_votes}\n"
         f"-------------------------\n\n")
     print(county_largest_turnout_summary, end="")
 
