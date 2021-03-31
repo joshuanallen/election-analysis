@@ -15,8 +15,9 @@ The Colorado Board of Elections has requested an audit of the voting data. They'
 ## Summary
 Election results are in Picture 1.1 below.
 
-**Picture 1.1:** Congressional Election Results Summary
-***Insert summary screenshot
+**Picture 1.1:** Colorado congressional election results summary
+
+![Colorado Congressional Election Results Summary](https://github.com/joshuanallen/election-analysis/blob/e632a5361f4356b815bb1abdaf2bd70cae478122/analysis/election_results_output.png)
 
 ### Analysis of election results by candidate
 - **Total votes cast:** 369,711
@@ -34,9 +35,9 @@ Election results are in Picture 1.1 below.
 
 ## Challenge Overview
 In addition to determining the results of the election, the Board has requested an audit of the voting data by county. They've requested the additional voting data below:
-6. Calculate voter turnout for each county
-7. Calculate the percentage of total votes from each individual county
-8. Calculate county with highest turnout
+1. Calculate voter turnout for each county
+2. Calculate the percentage of total votes from each individual county
+3. Calculate county with highest turnout
 
 ## Challenge Summary
 
@@ -59,17 +60,22 @@ This script can be also be altered to intake additional data columns and allow f
 We can separate the demographic data (e.g.gender) using a similar code structure analyzing the county level data.
 
 At line 23 we can intialize demographic list and dictionary.
+
 `gender_options = []`
+
 `gender_votes = {}`
 
 Within the for loop reading the csv file line-by-line, at line 52 we would need to add the following to extract the demograpic data from an additional column.
+
 `gender_id = row[3]`
 
 Next, we can populate the gender list and dictionaries based on the voting data by adding a if statement at line 76.
+
 `if gender_id not in gender_options:
     gender_options.append(gender_id)
     gender_votes[gender_id] = 0
-gender_votes[gender_id] += 1`
+gender_votes[gender_id] += 1
+`
 
 After the list and dictionary for the gender demographic data is populated, we can print our results tot he terminal and text file after line 109.
 
@@ -81,6 +87,7 @@ After the list and dictionary for the gender demographic data is populated, we c
         f"{gender_id}: {votesGender_percentage:.1f}% ({votesGender:,})\n")
     
     print(gender_results)
-    txt_file.write(gender_results)`
+    txt_file.write(gender_results)
+`
 
-    The above code is easily scalable to ingest alomst any demographic information (except age groups which would require additional script to create the initial groupings). 
+The above code is easily scalable to ingest alomst any demographic information (except age groups which would require additional script to create the initial groupings). 
