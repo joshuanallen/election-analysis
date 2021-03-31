@@ -61,33 +61,39 @@ We can separate the demographic data (e.g.gender) using a similar code structure
 
 At line 23 we can intialize demographic list and dictionary.
 
-`gender_options = []`
-
-`gender_votes = {}`
+    gender_options = []
+    gender_votes = {}
 
 Within the for loop reading the csv file line-by-line, at line 52 we would need to add the following to extract the demograpic data from an additional column.
 
-`gender_id = row[3]`
+    gender_id = row[3]
 
 Next, we can populate the gender list and dictionaries based on the voting data by adding a if statement at line 76.
 
-`if gender_id not in gender_options:
-    gender_options.append(gender_id)
-    gender_votes[gender_id] = 0
-gender_votes[gender_id] += 1
-`
+    if gender_id not in gender_options:
+
+        gender_options.append(gender_id)
+
+        gender_votes[gender_id] = 0
+
+    gender_votes[gender_id] += 1
 
 After the list and dictionary for the gender demographic data is populated, we can print our results tot he terminal and text file after line 109.
 
-`for gender_id in gender_votes:
-    votesGender = gender_votes.get(gender_id)
-    votesGender_percentage = float(votesGender)/float(total_votes) * 100
-    gender_results = (
-        f"-------------------------\n"
-        f"{gender_id}: {votesGender_percentage:.1f}% ({votesGender:,})\n")
-    
-    print(gender_results)
-    txt_file.write(gender_results)
-`
+    for gender_id in gender_votes:
+
+        votesGender = gender_votes.get(gender_id)
+
+        votesGender_percentage = float(votesGender)/float(total_votes) * 100
+
+        gender_results = (
+
+            f"-------------------------\n"
+
+            f"{gender_id}: {votesGender_percentage:.1f}% ({votesGender:,})\n")
+
+        print(gender_results)
+
+        txt_file.write(gender_results)
 
 The above code is easily scalable to ingest alomst any demographic information (except age groups which would require additional script to create the initial groupings). 
