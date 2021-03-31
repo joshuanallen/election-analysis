@@ -26,7 +26,7 @@ Election results are in Picture 1.1 below.
     - Diana DeGette
     - Raymon Anthony Doane
 - **Results for each candidate:**
-    - Charles Casper Stockham received **23%** of the vote and **85,213** in total votes.
+    - Charles Casper Stockham received **23.0%** of the vote and **85,213** in total votes.
     - Diana DeGette received **73.8%** of the vote and **272,892** in total votes.
     - Raymon Anthony Doane received **3.1%** of the vote and **11,606** in total votes.
 - **Winner of the election:**
@@ -47,17 +47,18 @@ In addition to determining the results of the election, the Board has requested 
     - Denver County's **306,055** votes accounted for **82.8%** of the total vote count.
     - Arapahoe County's **24,801** votes accounted for **6.7%** of the total vote count.
 - **County with highest turnout:**
-    - Denver county had the highest voter turnout
+    - Denver County had the highest voter turnout
 
 ## Use of script for future elections in Colorado
 The script written to analyze the provided election data can be more widely used by the Colorado Board of Elections in any future election.
 
+### Repurposing of current variables
 This script is scalable to intake any election data and break it out by location, whether it's city, district, or regional level data. For example, in a city-wide election, the script can be altered to show results by borough. In this case, we would repurpose the objects associated with "county" data and rename them to output election data broken out by borough. To repurpose or current script, we would need to alter the following lines.
 
-This script can be also be altered to intake additional data columns and allow for dissecting election data even further. For example we can ingest demographic data in an additional column. By ingesting demographic data it would allow us to break out the election results and provide a summary for each individual demographic.
+### Repurposing of script to include additional data
+This script can be altered to intake additional data columns and allow for more slicing of the election data. For example, we can ingest demographic data in an additional column allowing us to break out the election results and provide a summary for each individual demographic.
 
-**Code callout for demographic data organization:**
-We can separate the demographic data (e.g.gender) using a similar code structure analyzing the county level data.
+We can separate the demographic data (e.g.gender) using a similar code structure analyzing the county level data seen below.
 
 At line 23 we can intialize demographic list and dictionary.
 
@@ -78,7 +79,7 @@ Next, we can populate the gender list and dictionaries based on the voting data 
 
     gender_votes[gender_id] += 1
 
-After the list and dictionary for the gender demographic data is populated, we can print our results tot he terminal and text file after line 109.
+After the list and dictionary for the gender demographic data is populated, we can print our results to the terminal and text file after line 109.
 
     for gender_id in gender_votes:
 
@@ -96,4 +97,7 @@ After the list and dictionary for the gender demographic data is populated, we c
 
         txt_file.write(gender_results)
 
-The above code is easily scalable to ingest alomst any demographic information (except age groups which would require additional script to create the initial groupings). 
+The above code is easily scalable to ingest almost any string-based demographic information except age groups which would require additional script to create the age groupings.
+
+### Limitations of current script
+The script in its current form is limited in it's slicing ability. Currently, it can only slice and output based on one set of parameters. Refactoring the code to allow for multiple layers of slicing would provide us with more granular election data results. Additionally, this code is set to only yield results in direct single-winner popular vote elections. The code would have to be refactored for elections involving multiple winners or ranked-choice voting systems.
