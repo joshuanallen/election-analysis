@@ -8,8 +8,6 @@ The Colorado Board of Elections has requested an audit of the voting data. They'
 4. Calculate the percentage of total votes each candidate received
 5. Determine the winner of the election based on number of votes received
 
-
-
 ## Resources
 - Data Source: election_results.csv
 - Software: Python 3.7.6, Visual Studio Code 1.54.3
@@ -53,4 +51,36 @@ In addition to determining the results of the election, the Board has requested 
 ## Use of script for future elections in Colorado
 The script written to analyze the provided election data can be more widely used by the Colorado Board of Elections in any future election.
 
-This code can be scaled to intake a larger 
+This script is scalable to intake any election data and break it out by location, whether it's city, district, or regional level data. For example, in a city-wide election, the script can be altered to show results by borough. In this case, we would repurpose the objects associated with "county" data and rename them to output election data broken out by borough. To repurpose or current script, we would need to alter the following lines.
+
+This script can be also be altered to intake additional data columns and allow for dissecting election data even further. For example we can ingest demographic data in an additional column. By ingesting demographic data it would allow us to break out the election results and provide a summary for each individual demographic.
+
+**Code callout for demographic data organization:**
+We can separate the demographic data (e.g.gender) using a similar code structure analyzing the county level data.
+
+At line 23 we can intialize demographic list and dictionary.
+`gender_options = []`
+`gender_votes = {}`
+
+Within the for loop reading the csv file line-by-line, at line 52 we would need to add the following to extract the demograpic data from an additional column.
+`gender_id = row[3]`
+
+Next, we can populate the gender list and dictionaries based on the voting data by adding a if statement at line 76.
+`if gender_id not in gender_options:
+    gender_options.append(gender_id)
+    gender_votes[gender_id] = 0
+gender_votes[gender_id] += 1`
+
+After the list and dictionary for the gender demographic data is populated, we can print our results tot he terminal and text file after line 109.
+
+`for gender_id in gender_votes:
+    votesGender = gender_votes.get(gender_id)
+    votesGender_percentage = float(votesGender)/float(total_votes) * 100
+    gender_results = (
+        f"-------------------------\n"
+        f"{gender_id}: {votesGender_percentage:.1f}% ({votesGender:,})\n")
+    
+    print(gender_results)
+    txt_file.write(gender_results)`
+
+    The above code is easily scalable to ingest alomst any demographic information (except age groups which would require additional script to create the initial groupings). 
