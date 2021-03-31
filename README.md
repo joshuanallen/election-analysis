@@ -1,7 +1,7 @@
 # Election analysis using Python
 
 ## Project Overview
-The Colorado Board of Elections has requested an audit of the voting data. They've requested the following:
+The Colorado Board of Elections has requested an audit of the voting data. They've provided the voter ID, county in which the vote was cast, and candidate choice for each vote. They've requested the following:
 1. Calculate total votes cast
 2. Names of all candidates who received votes
 3. Calculate total votes for each candidate
@@ -31,7 +31,6 @@ Election results are in Picture 1.1 below.
     - Raymon Anthony Doane received **3.1%** of the vote and **11,606** in total votes.
 - **Winner of the election:**
     - The winner of the election is Diana DeGette, who received **73.8%** and **272,892** votes of the total votes cast in this election.
-
 
 ## Challenge Overview
 In addition to determining the results of the election, the Board has requested an audit of the voting data by county. They've requested the additional voting data below:
